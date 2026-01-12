@@ -1,0 +1,52 @@
+### 1️⃣ Register a user
+POST http://localhost:5000/auth/register
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com",
+  "password": "password123"
+}
+
+### 2️⃣ Login to get JWT
+POST http://localhost:5000/auth/login
+Content-Type: application/json
+
+{
+  "email": "testuser@example.com",
+  "password": "password123"
+}
+
+### 3️⃣ Access protected test route
+# Replace <TOKEN> with the token from login
+GET http://localhost:5000/api/protected
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTYxNzEzMGMyZDc5MjlkN2VkNDE0NjUiLCJpYXQiOjE3Njc5OTM2NTcsImV4cCI6MTc2ODU5ODQ1N30.xh_L3TjWPDE8IPoerkyRNL6XeFMCUM_Hm5u85NPrXws
+
+### 4️⃣ Create a new todo
+# Replace <TOKEN> with the token from login
+POST http://localhost:5000/todos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTYxNzEzMGMyZDc5MjlkN2VkNDE0NjUiLCJpYXQiOjE3Njc5OTM2NTcsImV4cCI6MTc2ODU5ODQ1N30.xh_L3TjWPDE8IPoerkyRNL6XeFMCUM_Hm5u85NPrXws
+Content-Type: application/json
+
+{
+  "title": "Finish backend setup"
+}
+
+### 5️⃣ Get all todos for logged-in user
+# Replace <TOKEN> with the token from login
+GET http://localhost:5000/todos
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTYxNzEzMGMyZDc5MjlkN2VkNDE0NjUiLCJpYXQiOjE3Njc5OTM2NTcsImV4cCI6MTc2ODU5ODQ1N30.xh_L3TjWPDE8IPoerkyRNL6XeFMCUM_Hm5u85NPrXws
+
+### 6️⃣ Update a todo
+# Replace <TOKEN> with the token and <TODO_ID> with the ID of a todo from GET request
+PUT http://localhost:5000/todos/6961716cc2d7929d7ed4146b
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTYxNzEzMGMyZDc5MjlkN2VkNDE0NjUiLCJpYXQiOjE3Njc5OTM2NTcsImV4cCI6MTc2ODU5ODQ1N30.xh_L3TjWPDE8IPoerkyRNL6XeFMCUM_Hm5u85NPrXws
+Content-Type: application/json
+
+{
+  "completed": true
+}
+
+### 7️⃣ Delete a todo
+# Replace <TOKEN> with the token and <TODO_ID> with the ID of a todo
+DELETE http://localhost:5000/todos/6961716cc2d7929d7ed4146b
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2OTYxNzEzMGMyZDc5MjlkN2VkNDE0NjUiLCJpYXQiOjE3Njc5OTM2NTcsImV4cCI6MTc2ODU5ODQ1N30.xh_L3TjWPDE8IPoerkyRNL6XeFMCUM_Hm5u85NPrXws
